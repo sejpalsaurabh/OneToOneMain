@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+
+		<!-- Database Specific Property Details - Need to Change according to 
+		Database Vendor -->
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/hibernate</property>
+        
+        <!-- Database UserName & Password Details -->
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password">jugalthakkar</property>
+
+		<!-- Database Default Schema Declaration -->
+		<property name="hibernate.default_schema">hibernate</property>
+		
+		<!-- Config for Showing SQL to Console if true specified -->
+        <property name="hibernate.show_sql">true</property>
+        
+        <!-- SessionFactory Scope - Four Possible Values of this Property can be Possible
+        	1) create - drop if existing schema exists and creates new one everytime
+        	2) update - updates the Existing Schema
+        	3) validate - validates the Schema and Perform User Operations
+        	4) create-drop -  -->
+        <property name="hibernate.hbm2ddl.auto">validate</property>
+
+
+	<!-- Defining the Maximum active Connection at a time -->
+		<property name="hibernate.connection.pool_size">1</property>
+
+	<!-- By Default this Property is set to False if you don't declare this 
+		Property. if it set to True than you don't need to Commit the Transaction 
+		into Database. Hibernate implicitly take care of commiting Records into Database 
+		after Each Session Transaction and if it is set to False than you need to 
+		commit the Transaction explicitly. e.g. session.getTransaction().commit(); -->
+		<property name="hibernate.connection.autocommit">false</property>
+		
+		<!-- Mapping Property Declaration -->
+		<mapping class="com.hibernate.model.User" />
+		<mapping class="com.hibernate.model.UserDetails" />
+		
+	</session-factory>
+</hibernate-configuration>
